@@ -13,6 +13,7 @@ License:        GPLv2
 Group:          Sound
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
 
+BuildRequires:	python
 BuildRequires:	alsa-lib-devel
 BuildRequires:  libjack-devel
 BuildRequires:  libdbus-1-devel
