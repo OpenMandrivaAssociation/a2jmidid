@@ -1,6 +1,6 @@
 %define name    a2jmidid
 %define version 7
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:           %{name}
 Summary:        ALSA to JACK MIDI Bridging tools
@@ -18,6 +18,7 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  libjack-devel
 BuildRequires:  libdbus-1-devel
 BuildRequires:  expat-devel
+Requires:       python-dbus
 
 
 %description
