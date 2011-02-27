@@ -1,6 +1,6 @@
 %define name    a2jmidid
 %define version 7
-%define release %mkrel 2
+%define release %mkrel 3
 
 Name:           %{name}
 Summary:        ALSA to JACK MIDI Bridging tools
