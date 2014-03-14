@@ -1,4 +1,4 @@
-#define debug_package %{nil}
+%define debug_package %{nil}
 
 %define name    a2jmidid
 %define version 8
