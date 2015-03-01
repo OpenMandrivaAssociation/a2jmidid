@@ -42,11 +42,24 @@ export PATH=`pwd`:$PATH
 ./waf build --verbose
 
 %install
-./waf install --destdir=%{buildroot}
-mkdir %{buildroot}%{_datadir}/%{name}
+#./waf install --destdir=%{buildroot}
+mkdir -p %{buildroot}%{_bindir}
+install -m755 a2j %{buildroot}%{_bindir}/
+install -m755 a2j_control %{buildroot}%{_bindir}/
+install -m755 a2jmidi_bridge %{buildroot}%{_bindir}/
+install -m755 a2jmidid %{buildroot}%{_bindir}/
+install -m755 j2amidi_bridge %{buildroot}%{_bindir}/
+
+mkdir -p %{buildroot}%{_datadir}/dbus-1/services
+cp -R org.gna.home.a2jmidid.service \
+	%{buildroot}%{_datadir}/dbus-1/services/org.gna.home.a2jmidid.service
+
+
+mkdir -p %{buildroot}%{_datadir}/%{name}
 cp README %{buildroot}%{_datadir}/%{name}
 cp AUTHORS %{buildroot}%{_datadir}/%{name}
 cp NEWS %{buildroot}%{_datadir}/%{name}
+
 
 %files
 %doc %{_datadir}/%{name}/README
