@@ -9,8 +9,9 @@ Summary:        ALSA to JACK MIDI Bridging tools
 Version:        %{version}
 Release:        %{release}
 
-Source:         http://download.gna.org/%name-%version.tar.bz2
-Patch:		    a2jmidid-8-glib.patch
+Source0:	http://download.gna.org/%name-%version.tar.bz2
+Source1:	waf-1.8.7
+Patch:		a2jmidid-8-glib.patch
 URL:            http://home.gna.org/a2jmidid/
 License:        GPLv2
 Group:          Sound
@@ -33,7 +34,9 @@ applications establishing the bridge between ALSA and JACK MIDI.
 %prep
 %setup -q
 %patch -p1
-
+rm -rf waf
+cp -R %{SOURCE1} waf
+chmod +x waf
 
 %build
 ln -s %{_bindir}/python2 python
