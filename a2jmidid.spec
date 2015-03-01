@@ -60,6 +60,7 @@ cp README %{buildroot}%{_datadir}/%{name}
 cp AUTHORS %{buildroot}%{_datadir}/%{name}
 cp NEWS %{buildroot}%{_datadir}/%{name}
 
+sed -i -e 's,env python,python2,' %{buildroot}%{_bindir}/*
 
 %files
 %doc %{_datadir}/%{name}/README
