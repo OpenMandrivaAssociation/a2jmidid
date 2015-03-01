@@ -16,12 +16,13 @@ URL:            http://home.gna.org/a2jmidid/
 License:        GPLv2
 Group:          Sound
 
-BuildRequires:  python
+BuildRequires:  python2
+BuildRequires:  python2-devel
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(expat)
-Requires:       python-dbus
+Requires:       python2-dbus
 
 
 %description
@@ -35,6 +36,9 @@ applications establishing the bridge between ALSA and JACK MIDI.
 %patch0 -p1
 
 %build
+ln -s %{_bindir}/python2 python
+export PATH=`pwd`:$PATH
+
 ./waf configure --prefix=%{_prefix}
 ./waf
 
