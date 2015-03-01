@@ -33,10 +33,12 @@ applications establishing the bridge between ALSA and JACK MIDI.
 %prep
 %setup -q
 %patch -p1
+
+
+%build
 ln -s %{_bindir}/python2 python
 export PATH=`pwd`:$PATH
 
-%build
 ./waf configure --prefix=%{_prefix}
 ./waf build --verbose
 
