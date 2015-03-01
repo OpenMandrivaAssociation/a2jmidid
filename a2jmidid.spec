@@ -9,19 +9,19 @@ Summary:        ALSA to JACK MIDI Bridging tools
 Version:        %{version}
 Release:        %{release}
 
-Source0:	http://download.gna.org/%name-%version.tar.bz2
-Patch:		a2jmidid-8-glib.patch
+Source0:         http://download.gna.org/%name-%version.tar.bz2
+Patch0:		a2jmidid-8-glib.patch
+
 URL:            http://home.gna.org/a2jmidid/
 License:        GPLv2
 Group:          Sound
 
-BuildRequires:  python2
-BuildRequires:  python2-devel
+BuildRequires:  python
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(jack)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(expat)
-Requires:       python2-dbus
+Requires:       python-dbus
 
 
 %description
@@ -32,35 +32,39 @@ applications establishing the bridge between ALSA and JACK MIDI.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 
 %build
-ln -s %{_bindir}/python2 python
-export PATH=`pwd`:$PATH
-
 ./waf configure --prefix=%{_prefix}
-./waf build --verbose
+./waf
 
 %install
-#./waf install --destdir=%{buildroot}
 mkdir -p %{buildroot}%{_bindir}
+install -m755 build/default/a2jmidi_bridge %{buildroot}%{_bindir}/
+install -m755 build/default/a2jmidid %{buildroot}%{_bindir}/
+install -m755 build/default/j2amidi_bridge %{buildroot}%{_bindir}/
 install -m755 a2j %{buildroot}%{_bindir}/
 install -m755 a2j_control %{buildroot}%{_bindir}/
-install -m755 a2jmidi_bridge %{buildroot}%{_bindir}/
-install -m755 a2jmidid %{buildroot}%{_bindir}/
-install -m755 j2amidi_bridge %{buildroot}%{_bindir}/
+
+sed -i -e 's,env python,python2,' %{buildroot}%{_bindir}/*
 
 mkdir -p %{buildroot}%{_datadir}/dbus-1/services
-cp -R org.gna.home.a2jmidid.service \
+cp -R build/default/org.gna.home.a2jmidid.service \
 	%{buildroot}%{_datadir}/dbus-1/services/org.gna.home.a2jmidid.service
-
 
 mkdir -p %{buildroot}%{_datadir}/%{name}
 cp README %{buildroot}%{_datadir}/%{name}
 cp AUTHORS %{buildroot}%{_datadir}/%{name}
 cp NEWS %{buildroot}%{_datadir}/%{name}
 
-sed -i -e 's,env python,python2,' %{buildroot}%{_bindir}/*
+
+mkdir -p %{buildroot}%{_mandir}/man1
+install man/a2j.1  %{buildroot}%{_mandir}/man1/
+install man/a2j_control.1 %{buildroot}%{_mandir}/man1/ 
+install man/a2jmidi_bridge.1 %{buildroot}%{_mandir}/man1/ 
+install man/a2jmidid.1 %{buildroot}%{_mandir}/man1/ 
+install man/j2amidi_bridge.1 %{buildroot}%{_mandir}/man1/
+
 
 %files
 %doc %{_datadir}/%{name}/README
@@ -69,4 +73,5 @@ sed -i -e 's,env python,python2,' %{buildroot}%{_bindir}/*
 %doc %{_mandir}/man1/*.1.*
 %{_bindir}/*
 %{_datadir}/dbus-1/services/org.gna.home.a2jmidid.service
+
 
