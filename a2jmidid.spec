@@ -43,8 +43,6 @@ export PATH=`pwd`:$PATH
 ./waf build --verbose
 
 %install
-ln -s %{_bindir}/python2 python
-export PATH=`pwd`:$PATH
 
 ./waf install --destdir=%{buildroot}
 mkdir %{buildroot}%{_datadir}/%{name}
