@@ -6,7 +6,6 @@ Version:        9
 Release:        1
 
 Source0:        https://github.com/linuxaudio/a2jmidid/archive/%{version}/%{name}-%{version}.tar.gz
-#Patch0:		a2jmidid-8-glib.patch
 
 URL:            https://github.com/linuxaudio/a2jmidid
 License:        GPLv2
