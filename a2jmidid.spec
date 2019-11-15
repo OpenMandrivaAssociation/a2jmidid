@@ -1,18 +1,14 @@
 %define debug_package %{nil}
 
-%define name    a2jmidid
-%define version 8
-%define release 2
-
-Name:           %{name}
+Name:           a2jmidid
 Summary:        ALSA to JACK MIDI Bridging tools
-Version:        %{version}
-Release:        %{release}
+Version:        9
+Release:        1
 
-Source0:         http://download.gna.org/%name-%version.tar.bz2
-Patch0:		a2jmidid-8-glib.patch
+Source0:        https://github.com/linuxaudio/a2jmidid/archive/%{version}/%{name}-%{version}.tar.gz
+#Patch0:		a2jmidid-8-glib.patch
 
-URL:            http://home.gna.org/a2jmidid/
+URL:            https://github.com/linuxaudio/a2jmidid
 License:        GPLv2
 Group:          Sound
 
@@ -33,7 +29,7 @@ applications establishing the bridge between ALSA and JACK MIDI.
 
 %prep
 %setup -q
-%patch0 -p1
+#patch0 -p1
 
 %build
 ln -s %{_bindir}/python2 python
