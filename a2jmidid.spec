@@ -12,6 +12,7 @@ URL:            https://github.com/linuxaudio/a2jmidid
 License:        GPLv2
 Group:          Sound
 
+BuildRequires:	waf
 BuildRequires:  python2
 BuildRequires:  python2-devel
 BuildRequires:  pkgconfig(alsa)
