@@ -1,0 +1,48 @@
+diff -rupN a2jmidid-9.old/man/a2jmidi_bridge.1 a2jmidid-9/man/a2jmidi_bridge.1
+--- a2jmidid-9.old/man/a2jmidi_bridge.1	2019-09-24 00:34:12.000000000 +0200
++++ a2jmidid-9/man/a2jmidi_bridge.1	2026-03-14 21:32:16.811857763 +0100
+@@ -5,7 +5,7 @@ a2jmidi_bridge \- static bridge with one
+ .SH SYNOPSIS
+ .B a2jmidi_bridge [NAME]
+ .SH DESCRIPTION
+-A single, static, one-way bridge from legacy ALSA MIDI to JACK MIDI.  Mostly useful for those needing a steady bridge rather than an active briding daemon such as a2jmidid.  Multiple instances of this can be run simultaneously.  
++A single, static, one-way bridge from legacy ALSA MIDI to JACK MIDI.  Mostly useful for those needing a steady bridge rather than an active bridging daemon such as a2jmidid.  Multiple instances of this can be run simultaneously.  
+ .SH OPTIONS
+ .IP NAME
+ names the given bridge with the name provided
+diff -rupN a2jmidid-9.old/man/a2jmidid.1 a2jmidid-9/man/a2jmidid.1
+--- a2jmidid-9.old/man/a2jmidid.1	2019-09-24 00:34:12.000000000 +0200
++++ a2jmidid-9/man/a2jmidid.1	2026-03-14 21:32:34.270877455 +0100
+@@ -6,7 +6,7 @@ a2jmidid \- JACK MIDI daemon for ALSA MI
+ .B a2jmidid [-j jack-server] [e | --export-hw]
+ .SH DESCRIPTION
+ a2jmidid is a daemon that implements automatic bridging. For every ALSA
+-sequencer port you get one jack midi port. If ALSA sequencer port is
++sequencer port you get one JACK midi port. If ALSA sequencer port is
+ both input and output one, you get two JACK MIDI ports, one input and
+ output.
+ .SH OPTIONS
+diff -rupN a2jmidid-9.old/man/j2amidi_bridge.1 a2jmidid-9/man/j2amidi_bridge.1
+--- a2jmidid-9.old/man/j2amidi_bridge.1	2019-09-24 00:34:12.000000000 +0200
++++ a2jmidid-9/man/j2amidi_bridge.1	2026-03-14 21:32:57.524384006 +0100
+@@ -5,7 +5,7 @@ j2amidi_bridge \- static bridge with one
+ .SH SYNOPSIS
+ .B j2amidi_bridge [NAME]
+ .SH DESCRIPTION
+-A single, static, one-way bridge from JACK MIDI to legacy ALSA MIDI.  Mostly useful for those needing a steady bridge rather than an active briding daemon such as a2jmidid.  Multiple instances of this can be run simultaneously.  
++A single, static, one-way bridge from JACK MIDI to legacy ALSA MIDI.  Mostly useful for those needing a steady bridge rather than an active bridging daemon such as a2jmidid.  Multiple instances of this can be run simultaneously.  
+ .SH OPTIONS
+ .IP NAME
+ names the given bridge with the name provided
+diff -rupN a2jmidid-9.old/sigsegv.c a2jmidid-9/sigsegv.c
+--- a2jmidid-9.old/sigsegv.c	2019-09-24 00:34:12.000000000 +0200
++++ a2jmidid-9/sigsegv.c	2026-03-14 21:33:24.106881778 +0100
+@@ -84,7 +84,7 @@ static void signal_segv(int signum, sigi
+     }
+     else
+     {
+-        a2j_error("Unknown bad signal catched!");
++        a2j_error("Unknown bad signal caught!");
+     }
+ 
+     a2j_error("info.si_signo = %d", signum);
